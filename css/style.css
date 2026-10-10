@@ -1,0 +1,80 @@
+/* --- CONFIGURAÇÕES BÁSICAS --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: #f5f5fa; display: flex; justify-content: center; padding: 40px 20px; }
+.container { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 900px; }
+.section-box { text-align: center; }
+
+/* --- ÁREA DE ARRASTE --- */
+.drop-zone {
+    border: 2px dashed #0c0c0c;
+    border-radius: 12px;
+    background: #fdfdfd;
+    position: relative; /* Base para o botão absoluto */
+    padding: 30px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    min-height: 300px; /* Aumentado para dar mais folga */
+}
+
+.instruction-text { color: #7f8c8d; margin-bottom: 20px; pointer-events: none; }
+
+/* --- BOTÃO TOGGLE (FIXADO NO CANTO) --- */
+.view-menu {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    z-index: 100; /* Sempre no topo */
+}
+
+.view-toggle-btn {
+    width: 44px; height: 44px; background-color: #f5f5fa; border: 1px solid #ddd; border-radius: 8px; cursor: pointer;
+    background-repeat: no-repeat; background-position: center; background-size: 24px; transition: 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.view-toggle-btn.grid-mode { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23555'%3E%3Cpath d='M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z'/%3E%3C/svg%3E"); }
+.view-toggle-btn.list-mode { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23555'%3E%3Cpath d='M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z'/%3E%3C/svg%3E"); }
+
+/* --- GRID DE FOTOS --- */
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+    gap: 15px;
+    pointer-events: none;
+    /* O SEGREDO: padding-bottom impede que as fotos cheguem perto do botão */
+    padding-bottom: 60px; 
+}
+
+.img-card {
+    pointer-events: auto;
+    position: relative;
+    background: white;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.img-card:hover { opacity: 0.8; cursor: move; border-color: #0c0c0c; transform: scale(1.02); }
+.thumbnail { width: 100%; height: 120px; object-fit: cover; border-radius: 6px; pointer-events: none; }
+
+/* Botões flutuantes (Girar/Excluir) */
+.rotate-btn, .delete-btn {
+    position: absolute; opacity: 0; transition: 0.2s; width: 30px; height: 30px;
+    border-radius: 50%; border: none; color: white; cursor: pointer; z-index: 110;
+    display: flex; align-items: center; justify-content: center;
+}
+.img-card:hover .rotate-btn, .img-card:hover .delete-btn { opacity: 1; }
+.rotate-btn { top: -10px; right: -10px; background: #0c0c0c; }
+.delete-btn { top: -10px; left: -10px; background: #ff7651; }
+
+/* MODO LISTA */
+.preview-grid.list-view { display: flex; flex-direction: column; padding-bottom: 80px; }
+.preview-grid.list-view .img-card { display: flex; align-items: center; height: 80px; width: 100%; margin-bottom: 5px; }
+.preview-grid.list-view .thumbnail { width: 60px; height: 60px; margin-right: 20px; }
+
+/* BOTÕES DE AÇÃO */
+.button-group { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+button.primary-btn, #convert-btn { background: #ff7651; padding: 15px 40px; border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; }
+.secondary { background: #e74c3c; padding: 15px 40px; border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; }
+button:disabled { background: #bdc3c7; cursor: not-allowed; }

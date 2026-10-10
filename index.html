@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Creator Pro - ADS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <section class="section-box">
+            <h2 style="font-size: 30px;">Editor de Posição</h2><br>
+            <div id="editor-drop-zone" class="drop-zone">
+                
+                <p class="instruction-text">Clique aqui ou arraste imagens</p>
+                <input type="file" id="editor-input" accept="image/*" multiple style="display: none;">
+                
+                <div id="editor-preview" class="preview-grid"></div>
+
+                <div class="view-menu" onclick="event.stopPropagation()">
+                    <button onclick="toggleView(event)" id="toggle-btn-1" class="view-toggle-btn grid-mode"></button>
+                </div>
+            </div>
+            
+            <button id="send-to-pdf-btn" class="primary-btn confirm-btn" disabled>Confirmar Posições e Enviar</button>
+        </section>
+
+        <section class="section-box" style="margin-top: 50px;">
+            <h2 style="font-size: 30px;">Gerar PDF</h2><br>
+            <div id="pdf-drop-zone" class="drop-zone">
+                <div id="pdf-preview" class="preview-grid"></div>
+
+                <div class="view-menu" onclick="event.stopPropagation()">
+                    <button onclick="toggleView(event)" id="toggle-btn-2" class="view-toggle-btn grid-mode"></button>
+                </div>
+            </div>
+
+            <div class="controls">
+                <p id="counter">Fotos prontas: 0</p>
+                <div class="button-group">
+                    <button id="convert-btn" disabled>Gerar PDF Profissional</button>
+                    <button id="clear-btn" class="secondary">Limpar Tudo</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
