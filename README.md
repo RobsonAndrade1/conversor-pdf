@@ -72,3 +72,23 @@ conversor-pdf/
 │   └── script.js
 ├── index.html
 └── README.md
+```
+
+## 🧪 Quality Assurance & Test Cases
+
+To ensure application stability and integrity without regressions during usage, the following manual test scenarios and edge cases were validated:
+
+### 1. File Handling & Upload
+* **[PASS] Multiple Uploads:** Simultaneous selection of multiple image files in `.png`, `.jpg`, and `.jpeg` formats.
+* **[PASS] Drag & Drop:** Dragging files directly onto the drop zone area (`drop-zone`).
+* **[PASS] Format Validation:** Attempted insertion of unsupported file types (e.g., `.pdf`, `.txt`) handled gracefully without interrupting the application.
+
+### 2. Image Editing & Normalization
+* **[PASS] 90° Rotation:** Visual rotation applied correctly prior to PDF rendering.
+* **[PASS] EXIF/Canvas Normalization:** Smartphone photos taken in portrait/landscape orientation maintain correct proportions and rotation after rendering on the `HTML5` Canvas.
+* **[PASS] Reordering (SortableJS):** Rearranging item sequence accurately reflected in the final PDF page order.
+* **[PASS] Individual Removal:** Deleting specific items from the queue without impacting remaining item data.
+
+### 3. Generation & Memory Management
+* **[PASS] PDF Generation (jsPDF):** Successful compilation and automatic download without blocking the main UI thread.
+* **[PASS] Memory Cleanup:** Revocation of blob URLs (`URL.revokeObjectURL`) upon completion to prevent memory leaks.
